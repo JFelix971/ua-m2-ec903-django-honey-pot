@@ -1,0 +1,5 @@
+{% if envoi %}Le méssage a été envoyé!{% endif %}
+<form method == 'POST' class='post-form'{% csrf_token %}>
+  {{form.as_p}}
+  <input type="submit" value="Valider"/>
+</form>

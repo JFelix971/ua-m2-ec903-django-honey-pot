@@ -10,6 +10,7 @@ class LoginForm(forms.ModelForm):
 
 
 
-class ContactForm(forms.Form):
-    model = Contact
-    fields = {'mail','objet','contenu'}
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = {'mail','objet','contenu'}

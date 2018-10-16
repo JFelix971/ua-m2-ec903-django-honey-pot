@@ -13,6 +13,17 @@ def acceuil(request):
     return render(request,'Honey/acceuil.html',{'form':form})
 
 
+def contact(request):
+    form = ContactForm(request.POST)
+
+    ##if form.is_valid():
+    ##    contact = form.save(commit=False)
+
+    ##    envoi = True
+
+    return render(request,'Honey/contact.html',{'form':form})
+
+
 def condition_user(request):
     return render(request,'Honey/condition_user.html')
 

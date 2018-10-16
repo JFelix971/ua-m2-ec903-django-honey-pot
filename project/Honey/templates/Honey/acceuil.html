@@ -1,3 +1,5 @@
-<h2>Login Form</h2>
-
-<form method == 'POST' class='post-form'{% csrf_token %}>  {{form}}</form>
+{% if envoi %}Bienvenue sur le site!{% endif %}
+<form method == 'POST' class='post-form'{% csrf_token %}>
+  {{form.as_p}}
+  <input type="submit" value="Submit"/>
+</form>

@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Honey import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('condition_utilisateur/', views.condition_user, name='condition_utilisateur'),
+
+    path('donnees_perso/', views.donnees_perso, name='donnees_perso'),
+
+    path('mentions_legales/', views.mentions_legales, name='mentions_legales'),
     path('', include('Honey.urls')),
 ]

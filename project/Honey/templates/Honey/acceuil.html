@@ -1,12 +1,3 @@
 <h2>Login Form</h2>
 
-  <div class="container">
-    <label for="uname"><b>Login</b></label>
-    <input type="text" placeholder="Entrer login" name="login" >
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Entrer mdp" name="mdp" >
-
-    <button type="submit">Login</button>
-    <button type="button" class="cancelbtn">Cancel</button>
-  </div>
+<form method == 'POST' class='post-form'{% csrf_token %}>  {{form}}</form>

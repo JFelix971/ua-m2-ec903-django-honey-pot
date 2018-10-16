@@ -11,3 +11,13 @@ def acceuil(request):
 
 
     return render(request,'Honey/acceuil.html',{'form':form})
+
+
+def condition_user(request):
+    return render(request,'Honey/condition_user.html')
+
+def donnees_perso(request):
+    return render(request,'Honey/donnees_perso.html')
+
+def mentions_legales(request):
+    return render(request,'Honey/mentions_legales.html')

@@ -4,8 +4,8 @@ from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
-    login = models.CharField(max_length=32,blank=True)
-    mdp   = models.CharField(max_length=32,blank=True)
+    login = models.CharField(max_length=32)
+    mdp   = models.CharField(max_length=32)
     ip    = models.CharField(max_length=100)
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)
@@ -15,7 +15,7 @@ class User(models.Model):
         ordering = ['ip']
 
     def __str__(self):
-        return self.login
+        return self.ip
 
 
 

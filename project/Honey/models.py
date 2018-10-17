@@ -4,15 +4,15 @@ from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
-    login = models.CharField(max_length=32)
-    mdp   = models.CharField(max_length=32)
+    login = models.CharField(max_length=32,blank=True)
+    mdp   = models.CharField(max_length=32,blank=True)
     ip    = models.CharField(max_length=100)
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)
 
     class Meta:
         verbose_name = "Login de connexion"
-        ordering = ['login']
+        ordering = ['ip']
 
     def __str__(self):
         return self.login
@@ -20,15 +20,15 @@ class User(models.Model):
 
 
 class Contact(models.Model):
-    mail = models.CharField(max_length=100)
-    objet   = models.CharField(max_length=100)
+    mail = models.CharField(max_length=100,blank=True)
+    objet   = models.CharField(max_length=100,blank=True)
     contenu = models.TextField(null=True)
     ip    = models.CharField(max_length=100)
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)
 
     class Meta:
-        verbose_name = "Envoie Mail"
+        verbose_name = "Contact-Mails"
         ordering = ['ip']
 
     def __str__(self):

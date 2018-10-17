@@ -11,6 +11,7 @@ def acceuil(request):
 
     if form.is_valid():
         user = User()
+        
         user.login = form.cleaned_data['login']
         user.mdp = form.cleaned_data['mdp']
 
@@ -36,28 +37,24 @@ def contact(request):
     form = ContactForm(request.POST or None )
 
     if form.is_valid():
+        c = Contact()
 
-       c = Contact()
+        c.mail = form.cleaned_data['mail']
+        c.objet = form.cleaned_data['objet']
+        c.contenu = form.cleaned_data['contenu']
 
-       c.mail = form.cleaned_data['mail']
+        c.useragent = request.META['HTTP_USER_AGENT']
+        c.date = datetime.datetime.now()
 
-       c.objet = form.cleaned_data['objet']
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
-       c.contenu = form.cleaned_data['contenu']
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
 
-       c.useragent = request.META['HTTP_USER_AGENT']
-
-       c.date = datetime.datetime.now()
-
-       x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-
-       if x_forwarded_for:
-           ip = x_forwarded_for.split(',')[0]
-       else:
-           ip = request.META.get('REMOTE_ADDR')
-
-       c.ip = ip
-       c.save()
+        c.ip = ip
+        c.save()
        ##envoi = True
 
     return render(request,'Honey/contact.html', locals())

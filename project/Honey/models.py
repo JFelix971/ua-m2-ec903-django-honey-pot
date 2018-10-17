@@ -6,7 +6,7 @@ from django.utils import timezone
 class User(models.Model):
     login = models.CharField(max_length=32,blank=True)
     mdp   = models.CharField(max_length=32,blank=True)
-    ip    = models.CharField(max_length=100)
+    ip    = models.GenericIPAddressField()
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)
 
@@ -20,10 +20,10 @@ class User(models.Model):
 
 
 class Contact(models.Model):
-    mail = models.CharField(max_length=100,blank=True)
+    mail = models.EmailField(blank=True)
     objet   = models.CharField(max_length=100,blank=True)
     contenu = models.TextField(null=True)
-    ip    = models.CharField(max_length=100)
+    ip    = models.GenericIPAddressField()
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)
 

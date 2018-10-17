@@ -36,17 +36,17 @@ def contact(request):
     form = ContactForm(request.POST)
 
     if form.is_valid():
-       contact = Contact()
+       c = Contact()
 
-       contact.mail = form.cleaned_data['mail']
+       c.mail = form.cleaned_data['mail']
 
-       contact.objet = form.cleaned_data['objet']
+       c.objet = form.cleaned_data['objet']
 
-       contact.contenu = form.cleaned_data['contenu']
+       c.contenu = form.cleaned_data['contenu']
 
-       contact.useragent = request.META['HTTP_USER_AGENT']
+       c.useragent = request.META['HTTP_USER_AGENT']
 
-       contact.date = datetime.datetime.now()
+       c.date = datetime.datetime.now()
 
        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
@@ -55,9 +55,9 @@ def contact(request):
        else:
            ip = request.META.get('REMOTE_ADDR')
 
-       contact.ip = ip
+       c.ip = ip
 
-       contact.save()
+       c.save()
        ##envoi = True
 
     return render(request,'Honey/contact.html', locals())

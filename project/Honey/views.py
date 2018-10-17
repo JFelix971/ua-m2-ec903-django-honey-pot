@@ -57,6 +57,7 @@ def contact(request):
 
        contact.ip = ip
 
+       contact.save()
        ##envoi = True
 
     return render(request,'Honey/contact.html', locals())

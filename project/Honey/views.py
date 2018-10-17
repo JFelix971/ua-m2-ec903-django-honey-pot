@@ -1,27 +1,65 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LoginForm, ContactForm
+from .models import User, Contact
+
+import datetime
 
 # Create your dviews here.
 def acceuil(request):
     form = LoginForm(request.POST)
 
     if form.is_valid():
-        user = form.save(commit=False)
+        user = User()
+        user.login = form.cleaned_data['login']
+        user.mdp = form.cleaned_data['mdp']
+
+        user.useragent = request.META['HTTP_USER_AGENT']
+        user.date = datetime.datetime.now()
+
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+
+        user.ip = ip
+
+        user.save()
 
 
-    return render(request,'Honey/acceuil.html',{'form':form})
+    return render(request,'Honey/acceuil.html',locals())
 
 
 def contact(request):
     form = ContactForm(request.POST)
 
-    ##if form.is_valid():
-    ##    contact = form.save(commit=False)
+    if form.is_valid():
+       contact = Contact()
 
-    ##    envoi = True
+       contact.mail = form.cleaned_data['mail']
 
-    return render(request,'Honey/contact.html',{'form':form})
+       contact.objet = form.cleaned_data['objet']
+
+       contact.contenu = form.cleaned_data['contenu']
+
+       contact.useragent = request.META['HTTP_USER_AGENT']
+
+       contact.date = datetime.datetime.now()
+
+       x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+       if x_forwarded_for:
+           ip = x_forwarded_for.split(',')[0]
+       else:
+           ip = request.META.get('REMOTE_ADDR')
+
+       contact.ip = ip
+
+       envoi = True
+
+    return render(request,'Honey/contact.html', locals())
 
 
 def condition_user(request):

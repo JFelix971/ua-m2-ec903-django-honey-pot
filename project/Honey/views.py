@@ -7,7 +7,7 @@ import datetime
 
 # Create your dviews here.
 def acceuil(request):
-    form = LoginForm(request.POST)
+    form = LoginForm(request.POST or None )
 
     if form.is_valid():
         user = User()
@@ -33,9 +33,10 @@ def acceuil(request):
 
 
 def contact(request):
-    form = ContactForm(request.POST)
+    form = ContactForm(request.POST or None )
 
     if form.is_valid():
+
        c = Contact()
 
        c.mail = form.cleaned_data['mail']
@@ -56,7 +57,6 @@ def contact(request):
            ip = request.META.get('REMOTE_ADDR')
 
        c.ip = ip
-
        c.save()
        ##envoi = True
 

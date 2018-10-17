@@ -4,8 +4,8 @@ from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
-    login = models.CharField(max_length=32)
-    mdp   = models.CharField(max_length=32)
+    login = models.CharField(max_length=32,blank=True)
+    mdp   = models.CharField(max_length=32,blank=True)
     ip    = models.CharField(max_length=100)
     useragent = models.CharField(max_length=100)
     date  = models.DateTimeField(default = timezone.now)

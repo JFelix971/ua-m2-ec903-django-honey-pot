@@ -63,10 +63,10 @@ def contact(request):
 
 
 def condition_user(request):
-    return render(request,'Honey/condition_user.html')
+    return render(request,'Honey/condition_user.html, locals())
 
 def donnees_perso(request):
-    return render(request,'Honey/donnees_perso.html')
+    return render(request,'Honey/donnees_perso.html', locals())
 
 def mentions_legales(request):
-    return render(request,'Honey/mentions_legales.html')
+    return render(request,'Honey/mentions_legales.html', locals())

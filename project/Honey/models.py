@@ -20,8 +20,8 @@ class User(models.Model):
 
 
 class Contact(models.Model):
-    mail = models.CharField(max_length=100)
-    objet   = models.CharField(max_length=100)
+    mail = models.CharField(max_length=100,blank=True)
+    objet   = models.CharField(max_length=100,blank=True)
     contenu = models.TextField(null=True)
     ip    = models.CharField(max_length=100)
     useragent = models.CharField(max_length=100)

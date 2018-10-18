@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form method == 'POST' id="Login">
+<form method ="post" class="form-group">
   {% csrf_token %}
   {{form.as_p}}
   <button type="submit" class="btn btn-primary">Valider</button>

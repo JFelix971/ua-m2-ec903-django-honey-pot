@@ -12,6 +12,11 @@
    <title>{% block title %}{% endblock %}</title>
 </head>
 <body id="LoginForm">
+{% block ga %}
+  {% if use_ga %}
+    {% include "ga.html" with ga_tracking_id=ga_tracking_id %}
+  {% endif %}
+{% endblock ga %}
 
   <div class="container">
   <h1 class="form-heading">Formulaire {% block type %}{% endblock %}</h1>

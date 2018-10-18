@@ -2,11 +2,14 @@
 
 {% block title %}Formulaire de contact{% endblock %}
 
+{% block type %}de contact{% endblock %}
+{% block description %}Veuillez entrer les informations demandées{% endblock %}
+
 {% block content %}
 
-<form method == 'POST' class='post-form'{% csrf_token %}>
+<form method == 'POST' id="Login" {% csrf_token %}>
   {{form.as_p}}
-  <input type="submit" value="Valider"/>
+  <button type="submit" class="btn btn-primary">Valider</button>
 </form>
 
 {% endblock %}

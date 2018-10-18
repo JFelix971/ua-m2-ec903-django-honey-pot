@@ -1,13 +1,44 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
-<header>Honey_Pot</header>
-   <section id="content">
+<body id="LoginForm">
+
+  <div class="container">
+  <h1 class="form-heading">Formulaire {% block type %}{% endblock %}</h1>
+  <div class="login-form">
+  <div class="main-div">
+      <div class="panel">
+     <p>{% block description %}{% endblock %}</p>
+     </div>
        {% block content %}{% endblock %}
-   </section>
-<footer>Liens mentions etc.</footer>
+     </div>
+
+     <ul class="list-group">
+       <a href="{% url "condition_utilisateur" %}">
+         Conditions générales d'utilisateur
+       </a>
+       <a href="{% url "mentions_legales" %}">
+         Mentions légales
+       </a>
+       <a href="{% url "donnees_perso" %}">
+         Données personelles
+       </a>
+       <a href="{% url "contact" %}">
+         Contatez nous
+       </a>
+     </ul>
+
+     </div></div></div>
+
 </body>
 </html>

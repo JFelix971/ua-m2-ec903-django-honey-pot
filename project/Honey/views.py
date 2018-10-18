@@ -7,11 +7,12 @@ import datetime
 
 # Create your dviews here.
 def acceuil(request):
+
     form = LoginForm(request.POST or None )
 
     if form.is_valid():
         user = User()
-        
+
         user.login = form.cleaned_data['login']
         user.mdp = form.cleaned_data['mdp']
 
@@ -28,7 +29,6 @@ def acceuil(request):
         user.ip = ip
 
         user.save()
-
 
     return render(request,'Honey/acceuil.html',locals())
 
@@ -55,8 +55,6 @@ def contact(request):
 
         c.ip = ip
         c.save()
-       ##envoi = True
-
     return render(request,'Honey/contact.html', locals())
 
 

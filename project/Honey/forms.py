@@ -13,4 +13,5 @@ class LoginForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = {'mail','objet','contenu'}
+        fields = ['mail','objet','contenu']
+        #widgets = {'ip': forms.HiddenInput(),'useragent': forms.HiddenInput(),'date': forms.HiddenInput()}

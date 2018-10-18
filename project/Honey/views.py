@@ -7,10 +7,12 @@ import datetime
 
 # Create your dviews here.
 def acceuil(request):
-    form = LoginForm(request.POST)
+
+    form = LoginForm(request.POST or None )
 
     if form.is_valid():
         user = User()
+
         user.login = form.cleaned_data['login']
         user.mdp = form.cleaned_data['mdp']
 
@@ -28,38 +30,31 @@ def acceuil(request):
 
         user.save()
 
-
     return render(request,'Honey/acceuil.html',locals())
 
 
 def contact(request):
-    form = ContactForm(request.POST)
+    form = ContactForm(request.POST or None )
 
     if form.is_valid():
-       c = Contact()
+        c = Contact()
 
-       c.mail = form.cleaned_data['mail']
+        c.mail = form.cleaned_data['mail']
+        c.objet = form.cleaned_data['objet']
+        c.contenu = form.cleaned_data['contenu']
 
-       c.objet = form.cleaned_data['objet']
+        c.useragent = request.META['HTTP_USER_AGENT']
+        c.date = datetime.datetime.now()
 
-       c.contenu = form.cleaned_data['contenu']
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
-       c.useragent = request.META['HTTP_USER_AGENT']
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
 
-       c.date = datetime.datetime.now()
-
-       x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-
-       if x_forwarded_for:
-           ip = x_forwarded_for.split(',')[0]
-       else:
-           ip = request.META.get('REMOTE_ADDR')
-
-       c.ip = ip
-
-       c.save()
-       ##envoi = True
-
+        c.ip = ip
+        c.save()
     return render(request,'Honey/contact.html', locals())
 
 

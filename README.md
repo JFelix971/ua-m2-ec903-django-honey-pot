@@ -41,7 +41,7 @@ $ python3 manage.py createsuperuser
    ```sh
 $ python3 manage.py runserver
 ```
-**Accès au site : 127.0.0.1:8000/**
+
 
 
  
